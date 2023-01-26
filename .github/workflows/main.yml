@@ -55,9 +55,9 @@ jobs:
         uses: jupyter-server/jupyter_releaser/.github/actions/populate-release@v2
         with:
           token: ${{ secrets.ADMIN_GITHUB_TOKEN }}
-          target: https://github.com/arnos-stuff/jupyter_releaser
+          target: https://github.com/arnos-stuff/jupyterlab-purple-wave-theme
           branch: main
-          release_url: https://github.com/arnos-stuff/jupyter_releaser/releases/
+          release_url: https://github.com/arnos-stuff/jupyterlab-purple-wave-theme/releases/
 
       - name: Finalize Release
         id: finalize-release
