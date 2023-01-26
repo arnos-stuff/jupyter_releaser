@@ -35,8 +35,7 @@ jobs:
       - name: enforce-triage-label
         uses: jupyterlab/maintainer-tools/.github/actions/enforce-label@v1
 
-jobs:
-  check_release:
+  publish:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
