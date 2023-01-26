@@ -1,0 +1,51 @@
+name: Check Release
+on:
+  push:
+    branches: ["*"]
+  pull_request:
+    branches: ["*"]
+    types: [labeled, unlabeled, opened, edited, synchronize]
+  release:
+    types: [published]
+  schedule:
+    - cron: "0 0 * * *"
+run-name: ${{ github.actor }} is using jupyterlab releaser
+
+jobs:
+  check-release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: jupyter-server/jupyter_releaser/.github/actions/check-release@v2
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          
+  publish-artifacts:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/upload-artifact@v2
+        with:
+          name: jupyter-releaser-dist-${{ github.run_number }}
+          path: .jupyter_releaser_checkout/dist
+
+  enforce-label:
+    runs-on: ubuntu-latest
+    permissions:
+      pull-requests: write
+    steps:
+      - name: enforce-triage-label
+        uses: jupyterlab/maintainer-tools/.github/actions/enforce-label@v1
+
+jobs:
+  check_release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: jupyterlab/maintainer-tools/.github/actions/base-setup@v1
+      - name: Install Dependencies
+        shell: bash
+        run: |
+          pip install -e .
+      - name: Check Release
+        uses: ./.github/actions/check-release
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
