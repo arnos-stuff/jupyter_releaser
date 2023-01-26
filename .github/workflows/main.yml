@@ -9,7 +9,6 @@ on:
     types: [published]
   schedule:
     - cron: "0 0 * * *"
-run-name: ${{ github.actor }} is using jupyterlab releaser
 
 jobs:
   check-release:
@@ -56,9 +55,9 @@ jobs:
         uses: jupyter-server/jupyter_releaser/.github/actions/populate-release@v2
         with:
           token: ${{ secrets.ADMIN_GITHUB_TOKEN }}
-          target: arnos-stuff/jupyterlab-purple-wave-theme
+          target: https://github.com/arnos-stuff/jupyter_releaser
           branch: main
-          release_url: https://github.com/arnos-stuff/jupyterlab-purple-wave-theme/releases/
+          release_url: https://github.com/arnos-stuff/jupyter_releaser/releases/
 
       - name: Finalize Release
         id: finalize-release
