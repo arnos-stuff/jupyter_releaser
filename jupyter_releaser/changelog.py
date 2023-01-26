@@ -12,7 +12,7 @@ START_MARKER = "<!-- <START NEW CHANGELOG ENTRY> -->"
 END_MARKER = "<!-- <END NEW CHANGELOG ENTRY> -->"
 PR_PREFIX = "Automated Changelog Entry"
 PRECOMMIT_PREFIX = "[pre-commit.ci] pre-commit autoupdate"
-
+ 
 
 def format_pr_entry(target, number, auth=None, dry_run=False):
     """Format a PR entry in the style used by our changelogs.
